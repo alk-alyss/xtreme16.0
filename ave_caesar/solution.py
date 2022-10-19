@@ -1,3 +1,6 @@
+from functools import cache
+
+@cache
 def is_valid_string(string):
     if len(string) == 1:
         return True
