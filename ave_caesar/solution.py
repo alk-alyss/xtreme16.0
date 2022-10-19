@@ -23,24 +23,61 @@ from functools import cache
 #         if s1 <= s2: return True
 
 def is_valid_string(string):
-    first_string = string[0]
-    index = 1
-    for i,s in enumerate(string[index:]):
-        if first_string <= s:
-            first_string += s
+    # substrings = []
+    # index = 0
+    # while index < len(string):
+    #     substring = string[index]
+    #     for i,s in enumerate(string[index+1:]):
+    #         if substring <= s:
+    #             substring += s
+    #         else:
+    #             substrings.append(substring)
+    #             index += i
+    #             break
+
+    # next_substrings = []
+    # index = 0
+    # while index < len(substrings):
+    #     substring = substrings[index]
+    #     for i,s in enumerate(substrings[index+1:]):
+    #         if substring <= s:
+    #             substring += s
+    #         else:
+    #             next_substrings.append(substring)
+    #             index += 1
+    #             break
+
+    substrings = list(string)
+    prevLen = len(substrings)
+    index = 0
+    while True:
+        s1 = substrings.pop(index)
+        if index >= len(substrings):
+            substrings.append(s1)
+
+            if prevLen == len(substrings):
+                break
+
+            prevLen = len(substrings)
+            index = 0
+            continue
+
+        s2 = substrings.pop(index)
+
+        if s1 <= s2:
+            s1 += s2
+            substrings.insert(index, s1)
         else:
-            index += i
-            break
+            substrings.insert(index, s2)
+            substrings.insert(index, s1)
+            index += 1
 
-    second_string = string[index]
-    for s in string[index+1:]:
-        if second_string <= s:
-            second_string += s
+    # print(substrings)
 
-        else:
-            return False
+    if len(substrings) == 1:
+        return True
 
-    return first_string <= second_string
+    return False
 
 
 N = int(input())
