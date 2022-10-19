@@ -2,8 +2,8 @@ def is_valid_string(string):
     if len(string) == 1:
         return True
 
-    if len(string) % 2 == 0 and string[:len(string) // 2] == string[len(string) // 2:]:
-        return True
+    # if len(string) % 2 == 0 and string[:len(string) // 2] == string[len(string) // 2:]:
+    #     return True
 
     for s in string:
         if s < string[0]: return False
