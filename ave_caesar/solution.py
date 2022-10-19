@@ -48,28 +48,30 @@ def is_valid_string(string):
     #             break
 
     substrings = list(string)
+    new_substrings = []
     prevLen = len(substrings)
     index = 0
     while True:
-        s1 = substrings.pop(index)
+        s1 = substrings[index]
         if index >= len(substrings):
-            substrings.append(s1)
-
             if prevLen == len(substrings):
                 break
 
+            substrings = new_substrings
             prevLen = len(substrings)
             index = 0
             continue
 
-        s2 = substrings.pop(index)
+        s2 = substrings[index+1]
 
         if s1 <= s2:
             s1 += s2
-            substrings.insert(index, s1)
+            new_substrings.extend(substrings[:index])
+            new_substrings.append(s1)
+            # TODO what if index+2 does not exist
+            new_substrings.extend(substrings[index+2:])
+            index = 0
         else:
-            substrings.insert(index, s2)
-            substrings.insert(index, s1)
             index += 1
 
     # print(substrings)
