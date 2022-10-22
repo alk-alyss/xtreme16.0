@@ -25,7 +25,7 @@ for i in range(8):
 
 for i, wheel in enumerate(wheels):
     row = ""
-    if i > 3:
+    if i > 1:
         for letter in wheel[:-1]:
             row += letter[1]
     else:
@@ -36,8 +36,8 @@ print()
 ##################
 ans = """scpabmtrdf
 aeoirulhnt
-ranteilsoc
-eitanlsrdo
+ranteilso
+eitanlsrd
 eistrnalo
 ensritadl
 esntrgdal
