@@ -83,20 +83,22 @@ for _ in range(T):
         connections[u].append(v)
         connections[v].append(u)
 
+    print(connections)
+
     Q = int(input())
 
-    for _ in range(Q):
-        t, u, v = list(map(int, input().split()))
+    # for _ in range(Q):
+    #     t, u, v = list(map(int, input().split()))
 
-        if t == 1:
-            u -= 1
-            nodes[u].weight = v
+    #     if t == 1:
+    #         u -= 1
+    #         nodes[u].weight = v
 
-        elif t == 2:
-            u -= 1
-            v -= 1
-            DFSCall(u, v, N, [])
-            output.append(findAnswer(route, nodes))
+    #     elif t == 2:
+    #         u -= 1
+    #         v -= 1
+    #         DFSCall(u, v, N, [])
+    #         output.append(findAnswer(route, nodes))
 
-    for o in output:
-        print(o)
+    # for o in output:
+    #     print(o)

@@ -12,22 +12,30 @@ def cleanXML(xml):
     return output
 
 def generateCipher(text, row, col):
-    cipher = []
-    for r in range(row):
-        start = r*col
-        end = (r+1)*col
+    # difference = row*col-len(text)
+    # if difference > 0:
+    #     padding = ['\n' for _ in range(difference)]
+    #     text.extend(padding)
 
-        try:
-            newRow = text[start:end]
-        except IndexError:
-            newRow = text[start:-1]
+
+    cipher = []
+    start = 0
+    for r in range(row):
+        end = start + col
+        # try:
+        newRow = text[start%len(text):end%len(text)]
+        # except IndexError:
+        #     newRow = text[start:-1]
+
         cipher.append(newRow)
+
+        start = end
+        # if start >= len(text): break
 
     return cipher
 
-from collections import defaultdict
 def generateDictionary(cipher, reverse=False):
-    d = defaultdict(list)
+    d = {}
 
     if reverse:
         cipher.reverse()
@@ -62,7 +70,7 @@ for _ in range(p):
 
 xml = ""
 for _ in range(n):
-    xml += input()
+    xml += input().strip()
 
 cleanxml = cleanXML(xml)
 cipher = generateCipher(cleanxml, r, c)

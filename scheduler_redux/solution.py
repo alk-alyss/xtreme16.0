@@ -1,6 +1,6 @@
 mod = 10**9+7
 N, workers = list(map(int, input().split()))
-tasks = [pow(2, num, mod) for num in list(map(int, input().split()))]
+tasks = list(map(int, input().split()))
 tasks.sort(reverse=True)
 
 # big = tasks[0]
@@ -19,7 +19,8 @@ start = 0
 doneTasks = 0
 while doneTasks < len(tasks):
     end = start + workers
-    runningTasks.extend(tasks[start:end])
+    newTasks = [pow(2, task, mod) for task in tasks[start:end]]
+    runningTasks.extend(newTasks)
 
     start = end
     workers = 0
