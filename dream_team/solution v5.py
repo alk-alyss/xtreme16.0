@@ -35,25 +35,36 @@ def main():
     for player in players:
         player.sort(key=lambda x: x[0], reverse=False)
         player.sort(key=lambda x: x[1], reverse=True)
-
-    # selected = ['' for i in range(5)]
-    budg = 0
-    # p, g, s, f, c = 0, 0, 0, 0, 0
-    ls = [0, 0, 0, 0, 0]
-    limits = [P, G, S, F, C]
     mx = 0
     mxls = []
-    while ls != limits:
+    # for p in range(P):
+    #     for g in range(G):
+    #         for s in range(S):
+    #             for f in range(F):
+    #                 for c in range(C):
+    #                     selected = [players[i][v] for i, v in enumerate([p, g, s, f, c])]
+    #                     # print(selected)
+    #                     summ = sum([x[1] for x in selected])
+    #
+    #                     if summ <= B:
+    #                         if summ>mx:
+    #                             mx = summ
+    #                             mxls = selected.copy()
+    # print('\n'.join([x[0] for x in mxls]))
+    for c in range(C):
+        for f in range(F):
+            for s in range(S):
+                for g in range(G):
+                    for p in range(P):
+                        selected = [players[i][v] for i, v in enumerate([p, g, s, f, c])]
+                        # print(selected)
+                        summ = sum([x[1] for x in selected])
 
-        selected = [players[i][ls[i]] for i in range(5)]
-
-        summ = sum([x[1] for x in selected])
-        if summ <= B:
-
-            print('\n'.join([x[0] for x in selected]))
-        counter(ls, limits)
-        if ls == [i - 1 for i in limits]:
-            break
+                        if summ <= B:
+                            if summ > mx:
+                                mx = summ
+                                mxls = selected.copy()
+    print('\n'.join([x[0] for x in mxls]))
 
 
 if __name__ == '__main__':

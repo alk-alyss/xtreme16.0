@@ -9,6 +9,17 @@ def counter(ls, limits):
         return ls
 
 
+# def counter(ls, limits):
+#     ls[4] += 1
+#     for i in range(1, 5):
+#         if ls[4 - i + 1] == limits[4 - i + 1]:
+#             ls[4 - i + 1] = 0
+#             if ls[4 - i] + 1 < limits[4 - i]:
+#                 ls[4 - i] += 1
+#     if ls[0] >= limits[0]:
+#         return ls
+
+
 def main():
     B = int(input())
     P = int(input())
@@ -36,20 +47,14 @@ def main():
         player.sort(key=lambda x: x[0], reverse=False)
         player.sort(key=lambda x: x[1], reverse=True)
 
-    # selected = ['' for i in range(5)]
-    budg = 0
-    # p, g, s, f, c = 0, 0, 0, 0, 0
     ls = [0, 0, 0, 0, 0]
     limits = [P, G, S, F, C]
-    mx = 0
-    mxls = []
     while ls != limits:
-
+        print(ls)
         selected = [players[i][ls[i]] for i in range(5)]
 
         summ = sum([x[1] for x in selected])
         if summ <= B:
-
             print('\n'.join([x[0] for x in selected]))
         counter(ls, limits)
         if ls == [i - 1 for i in limits]:

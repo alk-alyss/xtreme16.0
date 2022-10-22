@@ -1,24 +1,29 @@
-def counter(l, limits):
-    for i in range(5 - 1):
-        if l[5 - 1 - i] == limits[5 - 1 - i]:
-            l[5 - 1 - i] = 0
-            l[5 - 1 - i - 1] += 1
-    if l[0] == limits[0]:
-        return
-    ls[-1] += 1
 
-    # print(l[0], limits[0])
-    # if l[0] + 1 < limits[0]:
-    #     l[0] += 1
-    # else:
-    # for index in range(4):
-    #     if l[index] + 1 == limits[index] and index < 4:
-    #         l[index + 1] += 1
-    #         l[index] = 0
-    #
-    #     if index == 4:
-    #         if l[4] + 1 == limits[4]:
-    #             l = [i-1 for i in limits]
+
+
+def count(ls, limits):
+    ls[0] += 1
+    for i in range(4):
+        if ls[i] == limits[i]:
+            ls[i] = 0
+            if ls[i + 1] + 1 < limits[i + 1]:
+                ls[i + 1] += 1
+    if ls[4] >= limits[4]:
+        return
+
+
+# print(l[0], limits[0])
+# if l[0] + 1 < limits[0]:
+#     l[0] += 1
+# else:
+# for index in range(4):
+#     if l[index] + 1 == limits[index] and index < 4:
+#         l[index + 1] += 1
+#         l[index] = 0
+#
+#     if index == 4:
+#         if l[4] + 1 == limits[4]:
+#             l = [i-1 for i in limits]
 
 
 # def test():
@@ -117,43 +122,43 @@ if __name__ == '__main__':
     # main()
     ls = [0, 0, 0, 0, 0]
     print(ls)
-    counter(ls, [3, 3, 1, 1, 1])
+    count(ls, [3, 3, 1, 1, 1])
     print(ls)
-    counter(ls, [3, 3, 1, 1, 1])
+    count(ls, [3, 3, 1, 1, 1])
     print(ls)
-    counter(ls, [3, 3, 1, 1, 1])
+    count(ls, [3, 3, 1, 1, 1])
     print(ls)
-    counter(ls, [3, 3, 1, 1, 1])
+    count(ls, [3, 3, 1, 1, 1])
     print(ls)
-    counter(ls, [3, 3, 1, 1, 1])
+    count(ls, [3, 3, 1, 1, 1])
     print(ls)
-    counter(ls, [3, 3, 1, 1, 1])
+    count(ls, [3, 3, 1, 1, 1])
     print(ls)
-    counter(ls, [3, 3, 1, 1, 1])
+    count(ls, [3, 3, 1, 1, 1])
     print(ls)
-    counter(ls, [3, 3, 1, 1, 1])
+    count(ls, [3, 3, 1, 1, 1])
     print(ls)
-    counter(ls, [3, 3, 1, 1, 1])
+    count(ls, [3, 3, 1, 1, 1])
     print(ls)
-    counter(ls, [3, 3, 1, 1, 1])
+    count(ls, [3, 3, 1, 1, 1])
     print(ls)
-    counter(ls, [3, 3, 1, 1, 1])
+    count(ls, [3, 3, 1, 1, 1])
     print(ls)
-    counter(ls, [3, 3, 1, 1, 1])
+    count(ls, [3, 3, 1, 1, 1])
     print(ls)
-    counter(ls, [3, 3, 1, 1, 1])
+    count(ls, [3, 3, 1, 1, 1])
     print(ls)
-    counter(ls, [3, 3, 1, 1, 1])
+    count(ls, [3, 3, 1, 1, 1])
     print(ls)
-    counter(ls, [3, 3, 1, 1, 1])
+    count(ls, [3, 3, 1, 1, 1])
     print(ls)
-    counter(ls, [3, 3, 1, 1, 1])
+    count(ls, [3, 3, 1, 1, 1])
     print(ls)
-    counter(ls, [3, 3, 1, 1, 1])
+    count(ls, [3, 3, 1, 1, 1])
     print(ls)
-    counter(ls, [3, 3, 1, 1, 1])
+    count(ls, [3, 3, 1, 1, 1])
     print(ls)
-    counter(ls, [3, 3, 1, 1, 1])
+    count(ls, [3, 3, 1, 1, 1])
     print(ls)
-    counter(ls, [3, 3, 1, 1, 1])
+    count(ls, [3, 3, 1, 1, 1])
     print(ls)
