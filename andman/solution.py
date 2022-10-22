@@ -1,4 +1,5 @@
-from functools import cache
+from collections import defaultdict
+
 
 class Node:
     def __init__(self, weight):
@@ -15,51 +16,56 @@ class Node:
     def __str__(self):
         return str(self.weight)
 
-def DFS(node, end):
-    path = [node]
 
-    if node == end:
-        return path
-
-    if node.children == []:
-        return None
-
-    for connection in node.children:
-        nextPath = DFS(connection, end)
-        if nextPath == None:
-            continue
-        else:
-            path.extend(nextPath)
-
-    if len(path) > 1:
-        return path
-    else:
-        return None
-
-def findAnswer(n1, n2):
+def findAnswer(path, nodes):
     answer = 1
-    start = n1
-    end = n2
-
-    path = []
-    while True:
-        nextPath = DFS(start, end)
-        if nextPath != None:
-            path.extend(nextPath)
-            break
-
-        path.append(start)
-
-        if start.parent == None:
-            break
-        start = start.parent
 
     for node in path:
-        answer *= node.weight
+        answer *= nodes[node].weight
 
-    return answer%1000000007
+    return answer % 1000000007
 
-from collections import defaultdict
+
+route = []
+
+
+def DFS(vis, x, y, stack):
+    global route
+    stack.append(x)
+    if (x == y):
+
+        # print the path and return on
+        # reaching the destination node
+        route = stack.copy()
+        return
+    vis[x] = True
+
+    # if backtracking is taking place
+
+    if (len(connections[x]) > 0):
+        for j in connections[x]:
+
+            # if the node is not visited
+            if (vis[j] == False):
+                DFS(vis, j, y, stack)
+
+    del stack[-1]
+
+# A utility function to initialise
+# visited for the node and call
+# DFS function for a given vertex x.
+
+
+def DFSCall(x, y, n, stack):
+
+    # visited array
+    vis = [0 for i in range(n + 1)]
+
+    #memset(vis, false, sizeof(vis))
+
+    # DFS function call
+    DFS(vis, x, y, stack)
+
 
 T = int(input())
 
@@ -74,9 +80,8 @@ for _ in range(T):
         u, v = list(map(int, input().split()))
         u -= 1
         v -= 1
-
-        nodes[u].addChild(nodes[v])
-        nodes[v].addParent(nodes[u])
+        connections[u].append(v)
+        connections[v].append(u)
 
     Q = int(input())
 
@@ -90,7 +95,8 @@ for _ in range(T):
         elif t == 2:
             u -= 1
             v -= 1
-            output.append(findAnswer(nodes[u], nodes[v]))
+            DFSCall(u, v, N, [])
+            output.append(findAnswer(route, nodes))
 
     for o in output:
         print(o)
