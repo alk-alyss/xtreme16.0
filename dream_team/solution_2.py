@@ -1,6 +1,40 @@
-def counter(l,step):
-    
+def counter(l, limits):
+    for i in range(5 - 1):
+        if l[5 - 1 - i] == limits[5 - 1 - i]:
+            l[5 - 1 - i] = 0
+            l[5 - 1 - i - 1] += 1
+    if l[0] == limits[0]:
+        return
+    ls[-1] += 1
 
+    # print(l[0], limits[0])
+    # if l[0] + 1 < limits[0]:
+    #     l[0] += 1
+    # else:
+    # for index in range(4):
+    #     if l[index] + 1 == limits[index] and index < 4:
+    #         l[index + 1] += 1
+    #         l[index] = 0
+    #
+    #     if index == 4:
+    #         if l[4] + 1 == limits[4]:
+    #             l = [i-1 for i in limits]
+
+
+# def test():
+#     if count >= target:
+#         return ''.join(string)
+#
+#     for i in range(x - 1):
+#         if ls[x - 1 - i] == chr(ord('a') - 1 + b):
+#             ls[x - 1 - i] = 'a'
+#             ls[x - 1 - i - 1] = chr(ord(ls[-2]) + 1)
+
+# if ls[0] == chr(ord('a') - 1 + b):
+#         return ''.join(string)
+#
+#     count += x
+#     ls[-1] = chr(ord(ls[-1]) + 1)
 
 
 def main():
@@ -32,15 +66,6 @@ def main():
 
         # player.sort(key=lambda x: x[0], reverse=False)
         player.sort(key=lambda x: x[1], reverse=True)
-    # print(players)
-
-    # for player in players:
-    #     if len([player[i][1] for i in range(len(player))]) > len({player[i][1] for i in range(len(player))}):
-    #         print('Same Value')
-
-    # print(players[1])
-    # C, F, S, G, P = 0, 0, 0, 0, 0
-    # team = [(players[i][0][1], players[i][0][0]) for i in range(5)]
 
     selected = ['' for i in range(5)]
     budg = 0
@@ -89,4 +114,46 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    # main()
+    ls = [0, 0, 0, 0, 0]
+    print(ls)
+    counter(ls, [3, 3, 1, 1, 1])
+    print(ls)
+    counter(ls, [3, 3, 1, 1, 1])
+    print(ls)
+    counter(ls, [3, 3, 1, 1, 1])
+    print(ls)
+    counter(ls, [3, 3, 1, 1, 1])
+    print(ls)
+    counter(ls, [3, 3, 1, 1, 1])
+    print(ls)
+    counter(ls, [3, 3, 1, 1, 1])
+    print(ls)
+    counter(ls, [3, 3, 1, 1, 1])
+    print(ls)
+    counter(ls, [3, 3, 1, 1, 1])
+    print(ls)
+    counter(ls, [3, 3, 1, 1, 1])
+    print(ls)
+    counter(ls, [3, 3, 1, 1, 1])
+    print(ls)
+    counter(ls, [3, 3, 1, 1, 1])
+    print(ls)
+    counter(ls, [3, 3, 1, 1, 1])
+    print(ls)
+    counter(ls, [3, 3, 1, 1, 1])
+    print(ls)
+    counter(ls, [3, 3, 1, 1, 1])
+    print(ls)
+    counter(ls, [3, 3, 1, 1, 1])
+    print(ls)
+    counter(ls, [3, 3, 1, 1, 1])
+    print(ls)
+    counter(ls, [3, 3, 1, 1, 1])
+    print(ls)
+    counter(ls, [3, 3, 1, 1, 1])
+    print(ls)
+    counter(ls, [3, 3, 1, 1, 1])
+    print(ls)
+    counter(ls, [3, 3, 1, 1, 1])
+    print(ls)
