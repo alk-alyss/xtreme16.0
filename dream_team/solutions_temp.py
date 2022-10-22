@@ -1,3 +1,4 @@
+
 def main():
     B = int(input())
     P = int(input())
@@ -28,42 +29,40 @@ def main():
 
     selected = ['' for i in range(5)]
     budg = 0
-    p, g, s, f, c = 0, 0, 0, 0, 0
-    while p < P:
-        while g < G:
-            while s < S:
-                while f < F:
-                    while c < C:
+    for p in range(P):
+        for g in range(G):
+            for s in range(S):
+                for f in range(F):
+                    for c in range(C):
+                        print(selected)
 
                         if players[4][c][1] + budg <= B:
                             selected[4] = players[4][c][0]
                             budg += players[4][c][1]
                             break
-                        c += 1
+
                     if players[3][f][1] + budg <= B:
                         selected[3] = players[3][f][0]
                         budg += players[3][f][1]
                         break
-                    f += 1
+                    continue
                 if players[2][s][1] + budg <= B:
                     selected[2] = players[2][s][0]
                     budg += players[2][s][1]
                     break
-                s += 1
+                continue
             if players[1][g][1] + budg <= B:
                 selected[1] = players[1][g][0]
                 budg += players[1][g][1]
                 break
-            g += 1
+            continue
         if players[0][p][1] + budg <= B:
             selected[0] = players[0][p][0]
             budg += players[0][p][1]
             break
-        p += 1
+        continue
     print(selected)
 
 
 if __name__ == '__main__':
     main()
-
-
