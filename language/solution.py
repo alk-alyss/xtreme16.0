@@ -12,56 +12,65 @@ class LNode:
         self.id = id
         self.language = language
 
-def inorder(node):
-    global tree, langIds, disabledIds
+def findLangs(phrase, node):
+    global tree
 
+    currentNode = node
     output = []
 
-    if node.id in disabledIds:
+    if isinstance(currentNode, LNode):
+        output.append(currentNode.language)
         return output
 
-    if node.id in langIds:
-        output.append(node.language)
-    else:
-        output.extend(inorder(tree[node.yes_id][0]))
+    nextNodeId = currentNode.yes_id
+    nextNode = tree[nextNodeId]
+    output.extend(findLangs(phrase, nextNode))
 
-        output.extend(inorder(tree[node.no_id][0]))
+    if node.character not in phrase:
+        nextNodeId = currentNode.no_id
+        nextNode = tree[nextNodeId]
+        output.extend(findLangs(phrase, nextNode))
 
     return output
 
 
-tree = defaultdict(list)
+tree = {}
 n, p = list(map(int, input().split()))
 characters = set()
 root = None
 charToId = {}
-langIds = set()
 connections = set()
 
 for _ in range(n):
-    node = input().split()
-    if node[0] == 'I':
-        temp = INode(node[1], node[2], node[3], node[4])
-        characters.add(node[2])
-        tree[node[1]].append(temp)
-        charToId[node[2]] = node[1]
-        connections.add(node[3])
-        connections.add(node[4])
-        if node[1] not in connections: root = node[1]
+    s = input().split()
+    nodeId = s[1]
+
+    if s[0] == 'I':
+        char = s[2]
+        yesId = s[3]
+        noId = s[4]
+
+        node = INode(nodeId, char, yesId, noId)
+
+        characters.add(char)
+        charToId[char] = nodeId
+
+        connections.add(yesId)
+        connections.add(noId)
+
     else:
-        temp = LNode(node[1], node[2])
-        tree[node[1]].append(temp)
-        langIds.add(node[1])
+        lang = s[2]
+
+        node = LNode(nodeId, lang)
+
+    tree[nodeId] = node
+
+for nodeId in tree.keys():
+    if nodeId not in connections: root = nodeId
 
 for _ in range(p):
-    disabledIds = []
     phrase = set(input()).intersection(characters)
 
-    for char in phrase:
-        disabledIds.append(tree[charToId[char]][0].no_id)
-
-    output = inorder(tree[root][0])
-    output.sort()
-    output = ' '.join(output)
-
-    print(output)
+    result = findLangs(phrase, tree[root])
+    result.sort()
+    print(' '.join(result))
