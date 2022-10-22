@@ -1,0 +1,68 @@
+
+def main():
+    B = int(input())
+    P = int(input())
+    point_guards = [input().split(" ") for _ in range(P)]
+    point_guards = [[i[0], int(i[1])] for i in point_guards]
+    G = int(input())
+    shooting_guards = [input().split(" ") for _ in range(G)]
+    shooting_guards = [[i[0], int(i[1])] for i in shooting_guards]
+
+    S = int(input())
+    small_forward = [input().split(" ") for _ in range(S)]
+    small_forward = [[i[0], int(i[1])] for i in small_forward]
+
+    F = int(input())
+    power_forward = [input().split(" ") for _ in range(F)]
+    power_forward = [[i[0], int(i[1])] for i in power_forward]
+
+    C = int(input())
+    centers = [input().split(" ") for _ in range(C)]
+    centers = [[i[0], int(i[1])] for i in centers]
+    # print(centers)
+    # players = [centers, power_forward, small_forward, shooting_guards, point_guards]
+    players = [point_guards, shooting_guards, small_forward, power_forward, centers]
+    for player in players:
+        player.sort(key=lambda x: (x[1], x[0]), reverse=True)
+    # C, F, S, G, P = 0, 0, 0, 0, 0
+    # team = [(players[i][0][1], players[i][0][0]) for i in range(5)]
+
+    selected = ['' for i in range(5)]
+    budg = 0
+    for p in range(P):
+        for g in range(G):
+            for s in range(S):
+                for f in range(F):
+                    for c in range(C):
+                        print(selected)
+
+                        if players[4][c][1] + budg <= B:
+                            selected[4] = players[4][c][0]
+                            budg += players[4][c][1]
+                            break
+
+                    if players[3][f][1] + budg <= B:
+                        selected[3] = players[3][f][0]
+                        budg += players[3][f][1]
+                        break
+                    continue
+                if players[2][s][1] + budg <= B:
+                    selected[2] = players[2][s][0]
+                    budg += players[2][s][1]
+                    break
+                continue
+            if players[1][g][1] + budg <= B:
+                selected[1] = players[1][g][0]
+                budg += players[1][g][1]
+                break
+            continue
+        if players[0][p][1] + budg <= B:
+            selected[0] = players[0][p][0]
+            budg += players[0][p][1]
+            break
+        continue
+    print(selected)
+
+
+if __name__ == '__main__':
+    main()
