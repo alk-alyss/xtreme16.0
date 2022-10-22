@@ -23,6 +23,8 @@ def main():
     players = [point_guards, shooting_guards, small_forward, power_forward, centers]
     for player in players:
         player.sort(key=lambda x: (x[1], x[0]), reverse=True)
+
+    # print(players[1])
     # C, F, S, G, P = 0, 0, 0, 0, 0
     # team = [(players[i][0][1], players[i][0][0]) for i in range(5)]
 
@@ -39,31 +41,38 @@ def main():
                             selected[4] = players[4][c][0]
                             budg += players[4][c][1]
                             break
+                        budg -= players[4][c][1]
                         c += 1
                     if players[3][f][1] + budg <= B:
                         selected[3] = players[3][f][0]
                         budg += players[3][f][1]
                         break
+                    budg += players[3][f][1]
                     f += 1
                 if players[2][s][1] + budg <= B:
                     selected[2] = players[2][s][0]
                     budg += players[2][s][1]
                     break
+                budg -= players[2][s][1]
                 s += 1
+            # print(c, f, s, g, p)
             if players[1][g][1] + budg <= B:
                 selected[1] = players[1][g][0]
                 budg += players[1][g][1]
+                # print(selected, g)
                 break
+            budg -= players[1][g][1]
+
             g += 1
+        # print(c, f, s, g, p)
         if players[0][p][1] + budg <= B:
             selected[0] = players[0][p][0]
             budg += players[0][p][1]
             break
+        budg -= players[0][p][1]
         p += 1
-    print(selected)
+    print('\n'.join(selected))
 
 
 if __name__ == '__main__':
     main()
-
-
