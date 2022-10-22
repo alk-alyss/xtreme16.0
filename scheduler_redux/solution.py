@@ -1,6 +1,6 @@
 mod = 10**9+7
 N, workers = list(map(int, input().split()))
-tasks = list(map(int, input().split()))
+tasks = [pow(2, num, mod) for num in list(map(int, input().split()))]
 tasks.sort(reverse=True)
 
 # big = tasks[0]
@@ -16,22 +16,24 @@ tasks.sort(reverse=True)
 totalTime = 0
 runningTasks = []
 start = 0
-while len(tasks) > 0:
+doneTasks = 0
+while doneTasks < len(tasks):
     end = start + workers
     runningTasks.extend(tasks[start:end])
 
-    start += workers
+    start = end
     workers = 0
 
     time = min(runningTasks)
     totalTime += time
-    i = len(runningTasks)
-    while i > 0:
-        task = runningTasks[i]
-        task -= time
-        if task == 0:
+    i = len(runningTasks)-1
+    while i >= 0:
+        runningTasks[i] -= time
+        if runningTasks[i] == 0:
             runningTasks.pop(i)
+            doneTasks += 1
             workers += 1
+
         i -= 1
 
-print(totalTime)
+print(totalTime%mod)
