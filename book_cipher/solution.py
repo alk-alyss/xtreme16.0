@@ -16,8 +16,6 @@ def generateCipher(text, row, col):
     for r in range(row):
         start = r*col
         end = (r+1)*col
-        # if end > len(text):
-        #     end = -1
 
         try:
             newRow = text[start:end]
